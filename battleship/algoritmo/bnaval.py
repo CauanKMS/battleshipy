@@ -28,7 +28,7 @@ def extractFromPlayerFile(player, letter):
 def errornrpartsvalidation(plyr):
     pRounder = extractFromPlayerFile(plyr, 'T')
     p_R = pRounder.split('|')
-    if len(p_R) < 20 | len(p_R) > 20:
+    if len(p_R) < 20 or len(p_R) > 20:
         return False
     else:
         return True
@@ -36,14 +36,14 @@ def errornrpartsvalidation(plyr):
 #print(errornrpartsvalidation(j2))
 
 if errornrpartsvalidation(j1) == False:
-    resultado.write('ERROR_NR_PARTS_VALIDATION')
-    print('FOI J1')
+    resultado.write('J1 ERROR_NR_PARTS_VALIDATION')
+    #print('FOI J1')
     j1.close()
     j2.close()
     resultado.close()
 elif errornrpartsvalidation(j2) == False:
-    resultado.write('ERROR_NR_PARTS_VALIDATION')
-    print('FOI J2')
+    resultado.write('J2 ERROR_NR_PARTS_VALIDATION')
+    #print('FOI J2')
     j1.close()
     j2.close()
     resultado.close()
