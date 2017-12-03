@@ -39,24 +39,31 @@ def errornrpartsvalidation(plyr):
     else:
         return True
 
-#print(errornrpartsvalidation(j2))
+#print(errornrpartsvalidation(j2)) -- REMOVE
 
 #DO IT HAS AN ERROR ON THE NUMBER OF TORPEDOS? (MORE OR LESS)
 if errornrpartsvalidation(j1) == False:
     resultado.write('J1 ERROR_NR_PARTS_VALIDATION')
-    #print('FOI J1')
-    j1.close()
-    j2.close()
-    resultado.close()
+    print('FOI J1')
+    #REMOVE
+    ####################
+    #j1.close()
+    #j2.close()
+    #resultado.close()
+    ####################
+
 elif errornrpartsvalidation(j2) == False:
     resultado.write('J2 ERROR_NR_PARTS_VALIDATION')
+    #REMOVE
+    ####################
     #print('FOI J2')
-    j1.close()
-    j2.close()
-    resultado.close()
+    #j1.close()
+    #j2.close()
+    #resultado.close()
+    ####################
 
-#ERROR_OVERWRITE_PIECES_VALIDATION
-def erroroverwritepiecesvalidation(player, tabl):
+#WIDE ROUNDS WILL WIDE THE PLAYER SHIP POSITIONS SO WE CAN CHECK IF THERE ARE OVERWRITTEN POSITIONS
+def widerounds(player, tabl):
     ships = []
     for x in range(4):
         ships.append(extractFromPlayerFile(player, str(x + 1)).strip('\n'))
@@ -127,9 +134,35 @@ def erroroverwritepiecesvalidation(player, tabl):
 
     return marked
 
-print(erroroverwritepiecesvalidation(j1, table))
-#print(table)
-#print(table[])
+#ERROR_OVERWRITE_PIECES_VALIDATION - RETURNS TRUE IF NOT OVERWRITTEN
+def errorovewritepiecesvalidation(rounds):
+    duplicated = set()
+
+    return not any(q in duplicated or duplicated.add(q) for q in rounds)
+
+if errorovewritepiecesvalidation(widerounds(j1, table)) == False:
+    resultado.write('J1 ERROR_OVERWRITE_PIECES_VALIDATION')
+    #print('J1 OV') -- REMOVE
+
+
+elif errorovewritepiecesvalidation(widerounds(j2, table)) == False:
+    resultado.write('J2 ERROR_OVERWRITE_PIECES_VALIDATION')
+    #print('J2 OV') -- REMOVE
+
+#REMOVE
+#############################
+#def allUnique(x):
+#    seen = set()
+#    return not any(i in seen or seen.add(i) for i in x)
+
+#print(allUnique("ABCDEF"))
+#print(allUnique("ABACDEF"))
+#############################
+
+#print(widerounds(j1, table)) #-- REMOVE
+#print(errorovewritepiecesvalidation(widerounds(j1, table))) #-- REMOVE
+#print(table) -- REMOVE
+#print(table[]) -- REMOVE
 j1.close()
 j2.close()
 resultado.close()
